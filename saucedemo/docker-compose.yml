@@ -1,0 +1,20 @@
+# Docker Compose Configuration (Phase 8)
+
+version: '3.8'
+
+services:
+  playwright-tests:
+    build: .
+    container_name: playwright-tests
+    environment:
+      - NODE_ENV=test
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+    networks:
+      - playwright-network
+
+networks:
+  playwright-network:
+    driver: bridge

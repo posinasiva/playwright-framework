@@ -1,0 +1,14 @@
+{
+  "name": "saucedemo",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test",
+    "docker:start": "docker compose up --build --force-recreate --abort-on-container-exit",
+    "docker:stop": "docker compose down",
+    "test:showreport": "playwright show-report"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
