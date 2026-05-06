@@ -8,6 +8,7 @@ const CartPage = require('../pages/CartPage');
 
 const test = custom.extend({
 
+  // Login page fixture
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
