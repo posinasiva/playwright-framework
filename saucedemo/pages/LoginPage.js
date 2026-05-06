@@ -22,6 +22,7 @@ class LoginPage extends BasePage {
   }
 
   // Get error message
+  //Test message
   async getErrorMessage() {
     return await this.getText(this.errorMessage);
   }
