@@ -2,29 +2,29 @@
 
 const { test, expect } = require('../fixtures/page-fixtures');
 
-test.describe('Cart Tests', () => {
+test.describe('Cart Tests', { tag: '@cart' }, () => {
   test.beforeEach(async ({ loginPage }) => {
     // TODO: Login and add items to cart before each test
   });
 
-  test('Display cart items', async ({ page }) => {
+  test('Display cart items', { tag: ['@cart', '@smoke'] }, async ({ page }) => {
     // TODO: Implement test
     
   });
 
-  test('Remove item from cart', async ({ page }) => {
+  test('sample test', { tag: ['@smoke', '@regression'] }, async ({ page }) => {
     // TODO: Implement test
   });
 
-  test('Update item quantity', async ({ page }) => {
+  test('Update item quantity', { tag: ['@cart', '@regression'] }, async ({ page }) => {
     // TODO: Implement test
   });
 
-  test('Calculate total price', async ({ page }) => {
+  test('Calculate total price', { tag: ['@cart', '@regression'] }, async ({ page }) => {
     // TODO: Implement test
   });
 
-  test('Proceed to checkout', async ({ page }) => {
+  test('Proceed to checkout', { tag: ['@cart', '@regression'] }, async ({ page }) => {
     // TODO: Implement test
   });
 });
