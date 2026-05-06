@@ -13,7 +13,7 @@ const test = custom.extend({
     await use(loginPage);
   },
 
-
+  // Products page fixture
   productsPage: async ({ page }, use) => {
     const productsPage = new ProductsPage(page);
     await use(productsPage);
