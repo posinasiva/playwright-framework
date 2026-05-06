@@ -19,6 +19,7 @@ const test = custom.extend({
     await use(productsPage);
   },
 
+  // Cart page fixture
   cartPage: async ({ page }, use) => {
     const cartPage = new CartPage(page);
     await use(cartPage);
