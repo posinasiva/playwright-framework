@@ -3,28 +3,28 @@
 const { test, expect } = require('../fixtures/page-fixtures');
 
 test.describe('Cart Tests', { tag: '@cart' }, () => {
-  test.beforeEach(async ({ loginPage }) => {
-    // TODO: Login and add items to cart before each test
+
+  test('Display empty cart after login', { tag: '@smoke' }, async ({ cartPage }) => {
+    await expect(cartPage.cartItems).toHaveCount(0);
   });
 
-  test('Display cart items', { tag: ['@cart', '@smoke'] }, async ({ page }) => {
-    // TODO: Implement test
-    
+  test('Display cart with added item', { tag: '@smoke' }, async ({ populatedCartPage }) => {
+    await expect(populatedCartPage.cartItems).toHaveCount(1);
   });
 
-  test('sample test', { tag: ['@smoke', '@regression'] }, async ({ page }) => {
-    // TODO: Implement test
+  test('Remove item from cart', { tag: '@regression' }, async ({ populatedCartPage }) => {
+    await populatedCartPage.removeItemFromCart('Sauce Labs Backpack');
+    await expect(populatedCartPage.cartItems).toHaveCount(0);
   });
 
-  test('Update item quantity', { tag: ['@cart', '@regression'] }, async ({ page }) => {
-    // TODO: Implement test
+  test('Proceed to checkout from cart', { tag: '@regression' }, async ({ populatedCartPage }) => {
+    await populatedCartPage.clickCheckout();
+    await expect(populatedCartPage.page).toHaveURL(/checkout/);
   });
 
-  test('Calculate total price', { tag: ['@cart', '@regression'] }, async ({ page }) => {
-    // TODO: Implement test
-  });
-
-  test('Proceed to checkout', { tag: ['@cart', '@regression'] }, async ({ page }) => {
-    // TODO: Implement test
+  test('Continue shopping from cart', { tag: '@regression' }, async ({ cartPage }) => {
+    await cartPage.clickContinueShopping();
+    await expect(cartPage.page).toHaveURL(/inventory/);
   });
 });
+

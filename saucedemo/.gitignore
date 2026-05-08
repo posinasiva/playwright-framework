@@ -7,6 +7,9 @@ playwright-report/
 reports/
 .last-run.json
 
+# Auth state — contains session credentials, never commit
+playwright/.auth/
+
 # Environment variables
 .env
 .env.local
