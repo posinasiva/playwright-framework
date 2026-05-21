@@ -9,12 +9,6 @@ class ProductsPage extends BasePage {
     this.productItems = page.locator('.inventory_item');
     this.cartBadge = page.locator('.shopping_cart_badge');
     this.cartLink = page.locator('a.shopping_cart_link');
-    this.sortDropdown = page.locator('.product_sort_container');
-  }
-
-  // Returns a locator for all product name elements
-  getProductNames() {
-    return this.page.locator('.inventory_item_name');
   }
 
   // Add product to cart by name
@@ -25,14 +19,14 @@ class ProductsPage extends BasePage {
       .click();
   }
 
-  // Navigate to cart
-  async clickCart() {
-    await this.cartLink.click();
+  // Get cart badge count
+  async getCartCount() {
+    return await this.cartBadge.textContent();
   }
 
-  // Sort products by dropdown option value
-  async sortBy(option) {
-    await this.sortDropdown.selectOption(option);
+  // Click on cart
+  async clickCart() {
+    await this.cartLink.click();
   }
 }
 

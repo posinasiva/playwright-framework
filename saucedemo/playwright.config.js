@@ -8,11 +8,13 @@ module.exports = defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : undefined,
-  reporter: [
-    ['html'],
-    ['json', { outputFile: 'test-results/results.json' }],
-    ['junit', { outputFile: 'test-results/junit.xml' }],
-  ],
+  reporter: process.env.CI
+    ? [
+        ['html'],
+        ['json', { outputFile: 'test-results/results.json' }],
+        ['junit', { outputFile: 'test-results/junit.xml' }],
+      ]
+    : [['list']],
   use: {
     baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
     trace: 'on-first-retry',

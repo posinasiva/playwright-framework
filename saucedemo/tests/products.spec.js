@@ -19,11 +19,11 @@ test.describe('Products Tests', () => {
     await expect(productsPage.cartBadge).toHaveText('2');
   });
 
-  test('Filter products by price (low to high)', async ({ productsPage }) => {
+  test.skip('Filter products by price (low to high)', async ({ productsPage }) => {
     // TODO: Implement sort validation
   });
 
-  test('Sort products by name (Z to A)', async ({ productsPage }) => {
+  test.skip('Sort products by name (Z to A)', async ({ productsPage }) => {
     // TODO: Implement sort validation
   });
 });
