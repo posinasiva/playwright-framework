@@ -16,12 +16,14 @@
       "role": "performance"
     }
   ],
-  "invalidUsers": [
+  "lockedUsers": [
     {
       "username": "locked_out_user",
       "password": "secret_sauce",
       "role": "locked"
-    },
+    }
+  ],
+  "invalidUsers": [
     {
       "username": "invalid_user",
       "password": "invalid_password",

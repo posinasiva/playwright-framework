@@ -3,30 +3,28 @@
 const { test, expect } = require('../fixtures/page-fixtures');
 
 test.describe('Products Tests', () => {
-  test.beforeEach(async ({ authenticatedPage }) => {
-    // TODO: Login before each test
+
+  test('Display all products on inventory page', async ({ productsPage }) => {
+    await expect(productsPage.productItems).toHaveCount(6);
   });
 
-  test('Display products list', async ({ page }) => {
-    // TODO: Implement test
-  });
-
-  test('Add product to cart', async ({ productsPage }) => {
-    // TODO: Implement test
+  test('Add single product to cart', async ({ productsPage }) => {
     await productsPage.addProductToCart('Sauce Labs Backpack');
-    const cartCount = await productsPage.getCartCount();
-    expect(cartCount).toBe('1');
+    await expect(productsPage.cartBadge).toHaveText('1');
   });
 
-  test('Remove product from cart', async ({ page }) => {
-    // TODO: Implement test
+  test('Add multiple products to cart', async ({ productsPage }) => {
+    await productsPage.addProductToCart('Sauce Labs Backpack');
+    await productsPage.addProductToCart('Sauce Labs Bike Light');
+    await expect(productsPage.cartBadge).toHaveText('2');
   });
 
-  test('Filter products by price', async ({ page }) => {
-    // TODO: Implement test
+  test.skip('Filter products by price (low to high)', async ({ productsPage }) => {
+    // TODO: Implement sort validation
   });
 
-  test('Sort products', async ({ page }) => {
-    // TODO: Implement test
+  test.skip('Sort products by name (Z to A)', async ({ productsPage }) => {
+    // TODO: Implement sort validation
   });
 });
+

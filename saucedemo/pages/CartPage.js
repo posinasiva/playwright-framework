@@ -3,46 +3,33 @@
 const BasePage = require('./BasePage');
 
 class CartPage extends BasePage {
-  // Selectors
-  cartItems = '.cart_item';
-  removeButton = 'button[name="remove"]';
-  checkoutButton = 'button[name="checkout"]';
-  continueShoppingButton = 'button[name="continue-shopping"]';
-  cartBadge = '.shopping_cart_badge';
 
-  // Get all cart items
-  async getCartItems() {
-    return await this.page.$$('.cart_item');
+  constructor(page) {
+    super(page);
+    this.cartItems = page.locator('.cart_item');
+    this.checkoutButton = page.getByRole('button', { name: 'Checkout' });
+    this.continueShoppingButton = page.getByRole('button', { name: 'Continue Shopping' });
+    this.cartBadge = page.locator('.shopping_cart_badge');
   }
 
-  // Remove item from cart
+  // Remove a cart item by product name
   async removeItemFromCart(itemName) {
-    const items = await this.page.$$('.cart_item');
-    for (const item of items) {
-      const name = await item.$('.inventory_item_name');
-      const text = await name.textContent();
-      if (text.includes(itemName)) {
-        const button = await item.$('button');
-        await button.click();
-        break;
-      }
-    }
+    await this.cartItems
+      .filter({ hasText: itemName })
+      .getByRole('button', { name: /remove/i })
+      .click();
   }
 
-  // Click checkout
   async clickCheckout() {
-    await this.click(this.checkoutButton);
+    await this.checkoutButton.click();
   }
 
-  // Click continue shopping
   async clickContinueShopping() {
-    await this.click(this.continueShoppingButton);
+    await this.continueShoppingButton.click();
   }
 
-  // Get number of items in cart
   async getItemCount() {
-    const items = await this.getCartItems();
-    return items.length;
+    return await this.cartItems.count();
   }
 }
 
