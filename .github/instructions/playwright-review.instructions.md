@@ -1,14 +1,9 @@
 ---
-applyTo:
-  - "playwright.config.js"
-  - "tests/**"
-  - "pages/**"
-  - "fixtures/**"
-  - "utils/**"
+applyTo: "playwright.config.js,tests/**,pages/**,fixtures/**,utils/**"
 ---
 
 # GitHub Copilot Instructions – Reviewing an Existing Playwright Project (JavaScript)
-Apply these instructions when the user asks to review, audit, refactor, improve, or compare an existing Playwright project.
+Apply these instructions when the user asks to review, audit, refactor, improve, or compare an existing Playwright project against best practices.
 
 ==================================================
 GLOBAL CONTEXT & ASSUMPTIONS
@@ -53,8 +48,7 @@ CI Suitability:
 ==================================================
 REVIEW PRINCIPLES
 ==================================================
-- Do NOT recommend unnecessary rewrites
-- Prefer small, high-impact changes
+- Do NOT recommend unnecessary rewrites; prefer small, high-impact changes (exception: missing `projects` configuration is a structural gap — flag it as highest priority and recommend adding it even though it requires a config change)
 - Preserve existing behavior unless explicitly instructed otherwise
 - Highlight risks before suggesting fixes
 - Flag security issues immediately (hardcoded credentials, exposed tokens)
@@ -94,5 +88,5 @@ DO:
 
 DO NOT:
 - Suggest full rewrites when targeted fixes suffice
-- Introduce new abstractions not already present in the codebase
+- Introduce custom wrapper classes, utility layers, or architectural patterns not already present in the codebase — but DO recommend built-in Playwright features (fixtures, test.step, storageState) even if not yet used
 - Over-explain or generate tutorial-style content
